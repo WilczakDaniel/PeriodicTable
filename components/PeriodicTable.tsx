@@ -52,9 +52,9 @@ const PeriodicTable = () => {
   const tableLayout = createTableLayout();
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-1 sm:px-4">
-      <div className="overflow-x-auto -mx-1 sm:-mx-4">
-        <div className="bg-gray-50 dark:bg-gray-900 p-0.5 sm:p-2 md:p-4 border border-gray-200 dark:border-gray-700 shadow-lg sm:shadow-2xl min-w-[280px] sm:min-w-[640px] md:min-w-[900px] mx-1 sm:mx-4 rounded-md sm:rounded-xl">
+    <div className="w-full">
+      <div className="overflow-x-auto">
+        <div className="bg-white/80 dark:bg-gray-900/90 backdrop-blur-sm p-0.5 sm:p-2 md:p-4 border-0 sm:border border-gray-200 dark:border-gray-700 shadow-none sm:shadow-lg sm:shadow-2xl min-w-[280px] sm:min-w-[640px] md:min-w-[900px] rounded-none sm:rounded-md sm:rounded-xl">
           <div className="flex mb-0.5 sm:mb-2">
             <div className="w-4 sm:w-8 md:w-10"></div>
             <div className="grid grid-cols-18 gap-0 flex-1">
@@ -153,7 +153,7 @@ const PeriodicTable = () => {
         <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-center text-gray-800 dark:text-gray-200 font-serif">
           {t('elementCategories')}
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 sm:gap-3 text-xs sm:text-sm bg-white/80 dark:bg-gray-900/50 backdrop-blur-sm rounded-lg p-2 sm:p-4 md:p-6 border border-gray-300 dark:border-gray-600 max-h-40 sm:max-h-none overflow-y-auto sm:overflow-visible">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 sm:gap-3 text-xs sm:text-sm bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg p-2 sm:p-4 md:p-6 border border-gray-300 dark:border-gray-600 max-h-40 sm:max-h-none overflow-y-auto sm:overflow-visible">
           {Object.entries({
             'alkali metal': t('alkaliMetals'),
             'alkaline earth metal': t('alkalineEarthMetals'),

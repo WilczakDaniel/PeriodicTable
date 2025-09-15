@@ -26,11 +26,11 @@ const ElementDetails = ({ element, onClose }: ElementDetailsProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4 animate-fade-in">
-      <div className="bg-gray-900 dark:bg-gray-950 rounded-lg sm:rounded-xl max-w-full sm:max-w-lg md:max-w-2xl w-full mx-2 sm:mx-4 p-4 sm:p-6 relative shadow-xl sm:shadow-2xl border border-gray-700 dark:border-gray-600 animate-slide-up max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4 animate-fade-in">
+      <div className="bg-white dark:bg-gray-950 rounded-lg sm:rounded-xl max-w-full sm:max-w-lg md:max-w-2xl w-full mx-2 sm:mx-4 p-4 sm:p-6 relative shadow-xl sm:shadow-2xl border border-gray-300 dark:border-gray-600 animate-slide-up max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl sm:text-3xl w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 z-10"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl sm:text-3xl w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 z-10"
         >
           ×
         </button>
@@ -95,7 +95,7 @@ const ElementDetails = ({ element, onClose }: ElementDetailsProps) => {
           <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-1 sm:pb-2 mb-2 sm:mb-3">
             {t('electronConfiguration')}
           </h3>
-          <div className="text-xs sm:text-sm font-mono bg-gray-100 dark:bg-gray-700 p-2 sm:p-3 md:p-4 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-center break-all">
+          <div className="text-xs sm:text-sm font-mono bg-gray-50 dark:bg-gray-700 p-2 sm:p-3 md:p-4 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-center break-all">
             {element.electronConfiguration}
           </div>
         </div>

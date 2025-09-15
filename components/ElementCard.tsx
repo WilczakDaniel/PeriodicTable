@@ -13,7 +13,7 @@ const ElementCard = ({ element, colorClass, onClick }: ElementCardProps) => {
   const t = useTranslations();
   return (
     <div
-      className={`element-card ${colorClass} h-6 sm:h-12 md:h-16 w-full relative cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-110 hover:z-10 active:scale-95 border border-gray-600 dark:border-gray-500 overflow-hidden rounded-sm touch-manipulation`}
+      className={`element-card ${colorClass} h-6 sm:h-12 md:h-16 w-full relative cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-110 hover:z-10 active:scale-95 border border-gray-400 dark:border-gray-600 overflow-hidden rounded-sm touch-manipulation`}
       onClick={onClick}
     >
       <div className="absolute top-0 left-0.5 sm:top-0.5 sm:left-1 element-number text-[6px] sm:text-[9px] md:text-[10px] font-semibold leading-none">

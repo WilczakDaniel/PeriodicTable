@@ -45,10 +45,12 @@ export default async function LocaleLayout({
       <body className={`${inter.className} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
+            <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-500">
+              <div className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 p-4 sm:p-6">
+                <LanguageSwitcher />
+                <ThemeToggle />
+              </div>
               {children}
-              <LanguageSwitcher />
-              <ThemeToggle />
             </main>
           </ThemeProvider>
         </NextIntlClientProvider>

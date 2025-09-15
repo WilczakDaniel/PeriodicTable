@@ -27,11 +27,11 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50">
+    <div className="absolute top-0 left-0 m-5">
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 shadow-lg border border-gray-300 dark:border-gray-600 rounded-lg hover:shadow-xl transition-all duration-300 group"
+          className="flex items-center gap-2 p-3 rounded-lg bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-gray-300 dark:border-gray-600 hover:shadow-xl transition-all duration-300 group"
           aria-label={t('selectLanguage')}
         >
           <span className="text-lg">{currentLanguage?.flag}</span>
@@ -56,7 +56,7 @@ const LanguageSwitcher = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden animate-slide-up">
+          <div className="absolute top-full left-0 mt-2 w-48 bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm shadow-xl border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden animate-slide-up">
             {languages.map((language) => (
               <button
                 key={language.code}
