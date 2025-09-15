@@ -26,8 +26,14 @@ const ElementDetails = ({ element, onClose }: ElementDetailsProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4 animate-fade-in">
-      <div className="bg-white dark:bg-gray-950 rounded-lg sm:rounded-xl max-w-full sm:max-w-lg md:max-w-2xl w-full mx-2 sm:mx-4 p-4 sm:p-6 relative shadow-xl sm:shadow-2xl border border-gray-300 dark:border-gray-600 animate-slide-up max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
+    <div
+      className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4 animate-fade-in"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white dark:bg-gray-950 rounded-lg sm:rounded-xl max-w-full sm:max-w-lg md:max-w-2xl w-full mx-2 sm:mx-4 p-4 sm:p-6 relative shadow-xl sm:shadow-2xl border border-gray-300 dark:border-gray-600 animate-slide-up max-h-[85vh] sm:max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onClose}
           className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl sm:text-3xl w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 z-10"
