@@ -33,26 +33,46 @@
   .element-card {
     @apply cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105;
     @apply hover:shadow-blue-200/50 dark:hover:shadow-blue-900/50;
+    @apply theme-transition;
   }
 
   .element-symbol {
-    @apply text-lg font-bold text-gray-800 dark:text-gray-200;
+    @apply text-lg font-bold text-white drop-shadow-lg;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
   }
 
   .element-name {
-    @apply text-xs text-gray-800 dark:text-gray-200 leading-tight;
+    @apply text-xs text-white drop-shadow-md leading-tight;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
   }
 
   .element-number {
-    @apply text-xs font-bold text-gray-800 dark:text-gray-200;
+    @apply text-xs font-bold text-white drop-shadow-md;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
   }
 
   .element-mass {
-    @apply text-xs text-gray-800 dark:text-gray-200;
+    @apply text-xs text-white drop-shadow-md;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
   }
 
   .theme-transition {
     @apply transition-colors duration-500 ease-in-out;
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .element-card {
+      @apply hover:scale-110 active:scale-95;
+    }
+
+    .element-symbol {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    }
+
+    .element-number, .element-mass, .element-name {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+    }
   }
 }
 
