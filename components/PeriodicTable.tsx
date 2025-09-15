@@ -35,7 +35,9 @@ const PeriodicTable = () => {
     elements.forEach(element => {
       const periodIndex = element.period - 1;
       const groupIndex = element.group - 1;
-      if (element.category === 'lanthanide' || element.category === 'actinide') {
+      // Include Lu (71) and Lr (103) in the main table, exclude other lanthanides/actinides
+      if ((element.category === 'lanthanide' && element.atomicNumber !== 71) ||
+          (element.category === 'actinide' && element.atomicNumber !== 103)) {
         return;
       }
       if (periodIndex < 7 && groupIndex < 18) {
@@ -46,8 +48,8 @@ const PeriodicTable = () => {
     return layout;
   };
 
-  const lanthanides = elements.filter(el => el.category === 'lanthanide').sort((a, b) => a.atomicNumber - b.atomicNumber);
-  const actinides = elements.filter(el => el.category === 'actinide').sort((a, b) => a.atomicNumber - b.atomicNumber);
+  const lanthanides = elements.filter(el => el.category === 'lanthanide' && el.atomicNumber !== 71).sort((a, b) => a.atomicNumber - b.atomicNumber);
+  const actinides = elements.filter(el => el.category === 'actinide' && el.atomicNumber !== 103).sort((a, b) => a.atomicNumber - b.atomicNumber);
 
   const tableLayout = createTableLayout();
 
@@ -59,7 +61,7 @@ const PeriodicTable = () => {
             <div className="w-4 sm:w-8 md:w-10"></div>
             <div className="grid grid-cols-18 gap-0 flex-1">
               {Array.from({ length: 18 }, (_, i) => (
-                <div key={i} className="text-center text-[7px] sm:text-xs md:text-sm font-bold text-gray-700 dark:text-gray-300 py-0.5 sm:py-1">
+                <div key={i} className="text-center text-[9px] sm:text-sm md:text-base font-bold text-gray-700 dark:text-gray-300 py-0.5 sm:py-1">
                   {i + 1}
                 </div>
               ))}
@@ -68,23 +70,11 @@ const PeriodicTable = () => {
         <div className="space-y-0">
           {tableLayout.map((period, periodIndex) => (
             <div key={periodIndex} className="flex items-center">
-              <div className="flex items-center justify-center text-[8px] sm:text-xs md:text-sm font-bold text-gray-700 dark:text-gray-300 w-4 sm:w-8 md:w-10 h-6 sm:h-12 md:h-16">
+              <div className="flex items-center justify-center text-[10px] sm:text-sm md:text-base font-bold text-gray-700 dark:text-gray-300 w-4 sm:w-8 md:w-10 h-6 sm:h-12 md:h-16">
                 {periodIndex + 1}
               </div>
               <div className="grid grid-cols-18 gap-0 flex-1">
                 {period.map((element, groupIndex) => {
-                  // Special handling for lanthanides/actinides placeholders
-                  if ((periodIndex === 5 || periodIndex === 6) && groupIndex === 2) {
-                    return (
-                      <div key={`${periodIndex}-${groupIndex}`} className="col-span-1">
-                        <div className="h-6 sm:h-12 md:h-16 w-full bg-gray-300 dark:bg-gray-700 border border-gray-400 dark:border-gray-500 rounded-sm flex items-center justify-center text-[8px] sm:text-xs text-gray-700 dark:text-gray-300 font-bold cursor-pointer"
-                             onClick={() => document.getElementById(periodIndex === 5 ? 'lanthanides' : 'actinides')?.scrollIntoView({behavior: 'smooth'})}>
-                          {periodIndex === 5 ? '57-71' : '89-103'}
-                        </div>
-                      </div>
-                    )
-                  }
-
                   return (
                     <div key={`${periodIndex}-${groupIndex}`} className="col-span-1">
                       {element ? (
@@ -103,42 +93,62 @@ const PeriodicTable = () => {
             </div>
           ))}
         </div>
-          <div id="lanthanides" className="flex items-center mt-8 sm:mt-10">
-            <div className="flex items-center justify-center text-[10px] xs:text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300 w-4 sm:w-8 md:w-10 h-6 sm:h-12 md:h-16">
-
-            </div>
-            <div className="flex items-center text-[8px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 w-6 sm:w-10 md:w-12 h-6 sm:h-12 md:h-16">
-              57-71
-            </div>
-            <div className="flex gap-0 flex-1 overflow-x-auto">
-              {lanthanides.map((element) => (
-                <div key={element.atomicNumber} className="flex-shrink-0 w-6 sm:w-12 md:w-16">
-                  <ElementCard
-                    element={element}
-                    colorClass={getCategoryColor(element.category)}
-                    onClick={() => setSelectedElement(element)}
-                  />
-                </div>
-              ))}
+          <div id="lanthanides" className="mt-8 sm:mt-10">
+            <div className="flex items-center">
+              <div className="flex items-center justify-center text-[10px] sm:text-sm md:text-base font-bold text-gray-700 dark:text-gray-300 w-4 sm:w-8 md:w-10 h-6 sm:h-12 md:h-16">
+                *
+              </div>
+              <div className="grid grid-cols-18 gap-0 flex-1">
+                {Array.from({ length: 18 }, (_, i) => {
+                  const lanthanideIndex = i - 2; // Start from column 3 (index 2)
+                  if (lanthanideIndex >= 0 && lanthanideIndex < lanthanides.length) {
+                    const element = lanthanides[lanthanideIndex];
+                    return (
+                      <div key={`lanthanide-${i}`} className="col-span-1">
+                        <ElementCard
+                          element={element}
+                          colorClass={getCategoryColor(element.category)}
+                          onClick={() => setSelectedElement(element)}
+                        />
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={`lanthanide-${i}`} className="col-span-1">
+                      <div className="h-6 sm:h-12 md:h-16 w-full"></div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          <div id="actinides" className="flex items-center mt-1">
-            <div className="flex items-center justify-center text-[10px] xs:text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300 w-4 sm:w-8 md:w-10 h-6 sm:h-12 md:h-16">
-
-            </div>
-            <div className="flex items-center text-[8px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 w-6 sm:w-10 md:w-12 h-6 sm:h-12 md:h-16">
-              89-103
-            </div>
-            <div className="flex gap-0 flex-1 overflow-x-auto">
-              {actinides.map((element) => (
-                <div key={element.atomicNumber} className="flex-shrink-0 w-6 sm:w-12 md:w-16">
-                  <ElementCard
-                    element={element}
-                    colorClass={getCategoryColor(element.category)}
-                    onClick={() => setSelectedElement(element)}
-                  />
-                </div>
-              ))}
+          <div id="actinides" className="mt-2">
+            <div className="flex items-center">
+              <div className="flex items-center justify-center text-[10px] sm:text-sm md:text-base font-bold text-gray-700 dark:text-gray-300 w-4 sm:w-8 md:w-10 h-6 sm:h-12 md:h-16">
+                *
+              </div>
+              <div className="grid grid-cols-18 gap-0 flex-1">
+                {Array.from({ length: 18 }, (_, i) => {
+                  const actinideIndex = i - 2; // Start from column 3 (index 2)
+                  if (actinideIndex >= 0 && actinideIndex < actinides.length) {
+                    const element = actinides[actinideIndex];
+                    return (
+                      <div key={`actinide-${i}`} className="col-span-1">
+                        <ElementCard
+                          element={element}
+                          colorClass={getCategoryColor(element.category)}
+                          onClick={() => setSelectedElement(element)}
+                        />
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={`actinide-${i}`} className="col-span-1">
+                      <div className="h-6 sm:h-12 md:h-16 w-full"></div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
