@@ -6,8 +6,12 @@ import { useState } from 'react';
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
   { code: 'ru', name: 'Русский', flag: '🇷🇺' },
 ];
 
