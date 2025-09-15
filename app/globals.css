@@ -11,12 +11,19 @@
 @layer base {
   html {
     font-family: var(--font-inter);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
-  
+
+  body {
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair);
   }
-  
+
   code, pre, .font-mono {
     font-family: var(--font-source-code);
   }

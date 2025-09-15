@@ -27,11 +27,11 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="fixed top-4 left-4 z-50">
+    <div className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50">
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-xl transition-all duration-300 group"
+          className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 shadow-lg border border-gray-300 dark:border-gray-600 rounded-lg hover:shadow-xl transition-all duration-300 group"
           aria-label={t('selectLanguage')}
         >
           <span className="text-lg">{currentLanguage?.flag}</span>
@@ -56,14 +56,14 @@ const LanguageSwitcher = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden animate-slide-up">
+          <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-xl border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden animate-slide-up">
             {languages.map((language) => (
               <button
                 key={language.code}
                 onClick={() => handleLanguageChange(language.code)}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 ${
                   language.code === locale
-                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                    ? 'bg-blue-50 dark:bg-blue-800/30 text-blue-600 dark:text-blue-400'
                     : 'text-gray-700 dark:text-gray-300'
                 }`}
               >
